@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "521346125779",
+    "project_id": "contactonline-81066",
+    "storage_bucket": "contactonline-81066.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521346125779:android:e851e40aad2bd6b45b2926",
+        "android_client_info": {
+          "package_name": "com.example.contactonline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521346125779-mheg4nnea5i1mog58hgal7rvbrsm3lv9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2V_CKMW3Jgy2LDu9Rsd4U1vlRlq0FKcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "521346125779-mheg4nnea5i1mog58hgal7rvbrsm3lv9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
