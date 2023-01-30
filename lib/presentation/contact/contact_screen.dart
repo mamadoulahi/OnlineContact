@@ -60,13 +60,13 @@ class ContactScreen extends GetWidget<ContactController>{
             IconButton(onPressed:(){}, icon: Icon(Icons.person,color: AppColor.primaryColor,))
           ],
         ),
-        body:  SingleChildScrollView(
+        body: contactController.docId.value == null ? Center(child: CircularProgressIndicator()) : SingleChildScrollView(
              child: StreamBuilder<QuerySnapshot>(
-               stream: FirebaseFirestore.instance.collection("users").doc(docUser?.uid ).collection("contacts").snapshots(),
+               stream: FirebaseFirestore.instance.collection("users").doc(contactController.docId.value).collection("contacts").snapshots(),
                builder: (context,snapshot){
-                 List contactlist = snapshot.data!.docs;
+                 List contactlist = snapshot.data?.docs ?? [];
                  if (snapshot.connectionState == ConnectionState.waiting) {
-                   return Loading();
+                   return Center(child: CircularProgressIndicator());
                  }
                  if (snapshot.hasError) {
                    return Text('Something went wrong');

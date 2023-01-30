@@ -19,6 +19,13 @@ class ContactController extends GetxController{
    final TextEditingController Addsurname = TextEditingController();
    final TextEditingController Addemail= TextEditingController();
    final TextEditingController Addnumber = TextEditingController();
+   final RxString docId = "".obs;
+
+   @override
+   void onInit(){
+     getUserId();
+     super.onInit();
+   }
 
 
 
@@ -29,13 +36,20 @@ class ContactController extends GetxController{
    final RxString telephone = "".obs;
    final SignupController signupController= Get.put(SignupController());
 
+   getUserId() {
+     final user = FirebaseAuth.instance.currentUser;
+     if (user != null){
+       docId.value =user.uid;
+     }
+   }
+
 
 
 
 
  AddContact() async {
-   final docContact = await FirebaseFirestore.instance.collection("users").doc(docUser?.uid ?? "").collection("contacts");
-   contact.value.id=docUser!.uid;
+   final docContact = await FirebaseFirestore.instance.collection("users").doc(docUser?.uid).collection("contacts");
+   contact.value.id=docUser?.uid;
    contact.value.telephone= Addnumber.text;
    contact.value.email=Addemail.text;
    contact.value.surname = Addsurname.text;
