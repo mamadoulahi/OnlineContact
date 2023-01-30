@@ -49,7 +49,7 @@ class ContactController extends GetxController{
 GoSignout() async {
   Get.dialog(Loading());
   await FirebaseAuth.instance.signOut();
-  Get.back();
+  Get.offAllNamed(AppRoutes.initialRoute);
 }
 
 

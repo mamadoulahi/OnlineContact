@@ -15,10 +15,20 @@ class DetailContact extends StatelessWidget {
   final String? nom;
   final String? docId;
   const DetailContact({Key? key, this.numero, this.prenom, this.email, this.nom, this.docId}) : super(key: key);
-/*  _launchurl() async {
-    String _url = 'mailto:keitamamadoulahi@gmail.com' ;
+ _launchurlemail() async {
+    String _url = 'mailto:$email' ;
     await launch(_url);
-  }*/
+  }
+
+  _launchurlsms() async {
+    String _url = 'sms:$numero' ;
+    await launch(_url);
+  }
+
+  _launchurlappel() async {
+    String _url = 'tel:$numero' ;
+    await launch(_url);
+  }
 
   deletecontact(){
     try {
@@ -74,23 +84,38 @@ class DetailContact extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Column(
-                      children: [
-                        Icon(Icons.call,color: AppColor.MarronyColor,),
-                        Text("Appel",style: TextStyle(color: AppColor.MarronyColor),)
-                      ],
+                    GestureDetector(
+                      onTap: _launchurlappel,
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Icon(Icons.call,color: AppColor.MarronyColor,),
+                            Text("Appel",style: TextStyle(color: AppColor.MarronyColor),)
+                          ],
+                        ),
+                      ),
                     ),
-                    Column(
-                      children: [
-                        Icon(Icons.sms,color: AppColor.MarronyColor,),
-                        Text("SMS",style: TextStyle(color: AppColor.MarronyColor))
-                      ],
+                    GestureDetector(
+                      onTap: _launchurlsms,
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Icon(Icons.sms,color: AppColor.MarronyColor,),
+                            Text("SMS",style: TextStyle(color: AppColor.MarronyColor))
+                          ],
+                        ),
+                      ),
                     ),
-                    Column(
-                      children: [
-                        Icon(Icons.email,color: AppColor.MarronyColor,),
-                        Text("Email",style: TextStyle(color: AppColor.MarronyColor))
-                      ],
+                    GestureDetector(
+                      onTap: _launchurlemail,
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Icon(Icons.email,color: AppColor.MarronyColor,),
+                            Text("Email",style: TextStyle(color: AppColor.MarronyColor))
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -135,7 +160,7 @@ class DetailContact extends StatelessWidget {
                     SizedBox(width: 5.w,),
                     Column(
                       children: [
-                        Text("$email",style: TextStyle(color: AppColor.MarronyColor))
+                        Text("$email",style: TextStyle(color: AppColor.MarronyColor)),
                       ],
                     ),
                   ],
