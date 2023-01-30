@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import '../../core/variables/global_variable.dart';
 import '../../widgets/contact_detail.dart';
 import 'contact_edit_screen.dart';
+import 'model/contact_model.dart';
 
 class ContactScreen extends GetWidget<ContactController>{
   final contactController = Get.put(ContactController());
@@ -78,27 +79,28 @@ class ContactScreen extends GetWidget<ContactController>{
                    child: ListView.builder(
                        itemCount: contactlist.length,
                        itemBuilder:(context,index){
-                         Map<String,dynamic> data = contactlist[index].data() as Map<String,dynamic>;
+                         dynamic data = contactlist[index].data() ;
+                         ContactModel contact = ContactModel.fromJson(data);
                          String DocId = contactlist[index].id;
                          return Card(
                            child: ListTile(
                              trailing: IconButton(
                                  onPressed: () {
                                    Get.to(EditContactScreen(
-                                     initialnumero: "${data["numero"]}",
-                                     initialprenom: "${data["prenom"]}",
-                                     initialemail:"${data["email"]}",
-                                     initialnom: "${data["nom"]}",
+                                     initialnumero: "${contact.telephone}",
+                                     initialprenom: "${contact.surname}",
+                                     initialemail:"${contact.email}",
+                                     initialnom: "${contact.name}",
                                      docid: DocId,
                                    ));
                                  }, icon: Icon(Icons.edit,color: AppColor.MarronyColor,)),
                              onTap: () {
                                Get.to(
                                    DetailContact(
-                                     numero: "${data["numero"]}",
-                                     prenom: "${data["prenom"]}",
-                                     email:"${data["email"]}",
-                                     nom: "${data["nom"]}",
+                                     numero: "${contact.telephone}",
+                                     prenom: "${contact.surname}",
+                                     email:"${contact.email}",
+                                     nom: "${contact.name}",
                                      docId: DocId,
                                    )
                                );
